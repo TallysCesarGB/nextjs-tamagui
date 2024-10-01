@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { X } from "lucide-react";
-import { SizableText, YStack } from "tamagui"; // Importando YStack
+import { SizableText, YStack, Text } from "tamagui";
 
 const Stack: React.FC<React.HTMLProps<HTMLDivElement>> = ({
   children,
@@ -45,22 +45,49 @@ export default function TodoList() {
       <SizableText textAlign="center" fontSize={64}>
         To-Do List
       </SizableText>
-      <XStack>
+      <XStack
+        style={{
+          display: "flex",
+          gap: "2vw",
+        }}
+      >
         <Input
+          style={{
+            borderWidth: 2,
+            borderColor: "#000",
+            borderRadius: 8,
+            padding: 12,
+            backgroundColor: "white",
+            color: "black",
+          }}
           size={40}
           color="white"
           value={newTask}
           onChange={(e) => setNewTask(e.target.value)}
           placeholder="Add a new task"
-          className="flex-grow"
         />
-        <Button onClick={addTask} className="bg-black text-white">
-          Add
+        <Button
+          onClick={addTask}
+          style={{
+            background: "black",
+            color: "white",
+            width: "8vw",
+            textAlign: "center",
+            borderRadius: 8,
+          }}
+        >
+          <Text color={"white"}>Add</Text>
         </Button>
       </XStack>
       <Stack className="space-y-2">
         {tasks.map((task, index) => (
           <XStack
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              gap: "0.4vw",
+              fontSize: "1.8rem",
+            }}
             key={index}
             className="bg-secondary rounded-md p-2 justify-between items-center"
           >
