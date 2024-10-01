@@ -2,9 +2,8 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { X } from "lucide-react";
-import { SizableText } from "tamagui";
+import { SizableText, YStack } from "tamagui"; // Importando YStack
 
-// Definindo os tipos para Stack e XStack
 const Stack: React.FC<React.HTMLProps<HTMLDivElement>> = ({
   children,
   ...props
@@ -35,16 +34,18 @@ export default function TodoList() {
   };
 
   return (
-    <Stack color="white" cellPadding={16}>
-      <SizableText
-        color="white"
-        textAlign="center"
-        fontSize={64}
-        marginTop={160}
-      >
+    <YStack
+      flex={1}
+      justifyContent="center"
+      alignItems="center"
+      padding={16}
+      backgroundColor="$background"
+      gap={50}
+    >
+      <SizableText textAlign="center" fontSize={64}>
         To-Do List
       </SizableText>
-      <XStack className="mb-4 space-x-2">
+      <XStack>
         <Input
           size={40}
           color="white"
@@ -53,7 +54,9 @@ export default function TodoList() {
           placeholder="Add a new task"
           className="flex-grow"
         />
-        <Button onClick={addTask}>Add</Button>
+        <Button onClick={addTask} className="bg-black text-white">
+          Add
+        </Button>
       </XStack>
       <Stack className="space-y-2">
         {tasks.map((task, index) => (
@@ -72,6 +75,6 @@ export default function TodoList() {
           </XStack>
         ))}
       </Stack>
-    </Stack>
+    </YStack>
   );
 }
